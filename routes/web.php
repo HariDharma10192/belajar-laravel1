@@ -32,7 +32,6 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::get('/blog', [PostController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about', [
@@ -43,5 +42,6 @@ Route::get('/about', function () {
         'image'  => '../images/hari.jpg'
     ]);
 });
-// halama single post
+
+Route::get('/blog', [PostController::class, 'index']);
 Route::get('posts/{slug}', [PostController::class, 'show']);
