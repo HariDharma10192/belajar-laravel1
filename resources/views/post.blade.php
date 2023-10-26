@@ -6,6 +6,9 @@
    
        <h1 class="mb-5">{{$post-> title}}</h1>
 
+
+       <p>By. Hari Dharma in <a href="/categories/{{$post ->category->slug }}">{{ $post->category->name }} </a> </p>
+
        {{$post->body}}
 
     <a href="/blog">Back To Post</a>

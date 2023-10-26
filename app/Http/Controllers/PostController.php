@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-            'title' => 'Blog', // Judul halaman, misalnya "Blog"
+            'title' => 'Posts', // Judul halaman, misalnya "Blog"
             'posts' => Post::all() // Mengambil semua postingan dari model "Post" dan mengirimkannya ke tampilan.
         ]);
     }

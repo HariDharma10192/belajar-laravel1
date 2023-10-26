@@ -3,7 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +43,23 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/blog', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+// Route::get('/categories', [CategoryController::class, 'index']);
+// Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+
+Route::get('/categories', function () {
+    return view('categories', [
+        'title' => 'Post Categories',
+        'categories' => Category::all()
+    ]);
+});
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('category', [
+        'title' => $category->name,
+        'posts' => $category->posts, //ini untuk menampilkan post yg terk
+        'category' => $category->name
+
+    ]);
+});
