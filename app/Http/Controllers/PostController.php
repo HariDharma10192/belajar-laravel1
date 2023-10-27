@@ -12,7 +12,8 @@ class PostController extends Controller
     {
         return view('posts', [
             'title' => 'Posts', // Judul halaman, misalnya "Blog"
-            'posts' => Post::all() // Mengambil semua postingan dari model "Post" dan mengirimkannya ke tampilan.
+            // 'posts' => Post::all() // Mengambil semua postingan dari model "Post" dan mengirimkannya ke tampilan.
+            'posts' => Post::latest()->get()
         ]);
     }
 
