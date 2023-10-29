@@ -20,6 +20,12 @@
           </li>        
         </li>      
         </ul>
+        <ul class="navbar-nav ms-end">
+          <li class="nav-item">
+            <a href="/login" class="nav-link text-white  {{ $active === "login" ? 'active' : '' }}" ><i class="bi bi-box-arrow-right"></i> Login</a>
+          </li>
+        </ul>
+
       </div>
     </div>
   </nav>
