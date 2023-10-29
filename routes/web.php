@@ -21,6 +21,7 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome', [
+        'active' => 'wellcome',
         'test' => 'Hai Ini Test Dari Routes',
         'title' => 'Welcome'
     ]);
@@ -29,6 +30,7 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home', [
+        'active' => 'home',
         'title' => 'Home'
     ]);
 });
@@ -36,6 +38,7 @@ Route::get('/home', function () {
 
 Route::get('/about', function () {
     return view('about', [
+        'active' => 'about',
         'title' => 'About',
         'nama'  => 'Hari Dharma',
         'email' => 'admin@gmail.com',
@@ -54,23 +57,5 @@ Route::get('/categories', function () {
         'active' => 'categories',
         'title' => 'Post Categories',
         'categories' => Category::all()
-    ]);
-});
-
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'active' => 'categories',
-
-        'title' => "Post By Category :  $category->name ",
-        'posts' => $category->posts->load('author', 'category')
-        // 'category' => $category->name
-
-    ]);
-});
-
-Route::get('/authors/{author:username}', function (User $author) {
-    return view('posts', [
-        'title' => "Post By Authorposer  : $author->username",
-        'posts' => $author->posts->load('category', 'author')
     ]);
 });
