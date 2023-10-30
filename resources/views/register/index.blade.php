@@ -27,22 +27,51 @@
                     <div class="card login-form mb-0">
                         <div class="card-body pt-5">
                             
-                                <a class="text-center" href="index.html"> <h4>Register</h4></a>
+                                <a class="text-center" href="#"> <h4>Register</h4></a>
     
-                            <form class="mt-5 mb-5 login-input">
+                            <form  action="/register" method="POST" class="mt-5 mb-5 login-input">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                                    <input type="text" class="form-control @error('name')
+                                    is-invalid
+                                    @enderror " id="name" name="name" placeholder="Name" value="{{old('name')}}" required>
+                                    @error('name')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  name="username" id="username" placeholder="Username" required>
+                                    <input type="text" class="form-control @error('username')
+                                    is-invalid
+                                    @enderror "  name="username" id="username" placeholder="Username" value="{{old('username')}}" required>
+                                    @error('username')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    <input type="email" class="form-control @error('email')
+                                    is-invalid
+                                    @enderror" name="email" id="email" placeholder="Email" value="{{old('email')}}" required>
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                    <input type="password" class="form-control  @error('password')
+                                    is-invalid
+                                    @enderror" name="password" id="password" placeholder="Password"  required>
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                        </div>
+                                        @enderror
                                 </div>
-                                <button class="btn login-form__btn submit w-100">Register</button>
+                                <button  class="btn login-form__btn submit w-100">Register</button>
                             </form>
                                 <p class="mt-5 login-form__footer">Have account <a href="/login" class="text-primary">Login </a> now</p>
                                 </p>

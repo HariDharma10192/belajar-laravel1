@@ -22,6 +22,13 @@
     <div class="login-form-bg h-100 ">
         <div class="container h-100">
             <div class="row justify-content-center h-100">
+@if (session()->has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session()->get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    
+@endif
                 <div class="col-xl-6">
                     <div class="form-input-content ">
                         <div class="card login-form mb-0">
