@@ -16,29 +16,42 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Title</label>
                             <div class="col-sm-10">
-                                <input type="text" id="title" class="form-control" placeholder="title" name="title">
+                                <input type="text" 
+                             id="title" class="form-control" placeholder="title" name="title" required value="{{old('title')}} ">
+                            
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Slug</label>
                             <div >
-                                <input type="text" id="slug" class="form-control" placeholder="slug" name="slug">
+                                <input type="text" @error('slug')
+                                is-invalid
+                            @enderror id="slug" class="form-control" placeholder="slug" name="slug" required value="{{old('slug')}}">
+                            @error('slug')
+                            <div class="invalid-feedback">
+                                {{ $message }}
                             </div>
+                        @enderror
+                        </div>
                         </div>                    
                        
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="category">Category list (select one):</label>
                             <select class="form-control" id="category" name="category_id">
                                 @foreach ($categories as $category)
-                                    
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                @if (old('category_id')=== $category->id)                           
+                                <option value="{{$category->id}}" selected >{{$category->name}}</option>
+                                @else
+                                <option value="{{$category->id}}" >{{$category->name}}</option>
+
+                                @endif 
                                 @endforeach
                              
                             </select>
                         </div>
                         <div class=" form-group row">
                             <label for="body" class="form-label"></label>
-                            <input id="body" for="body" value="Editor content goes here" type="hidden" name="body">
+                            <input id="body" for="body" value="Editor content goes here" type="hidden" name="body" required>
                             <trix-editor input="body"></trix-editor>
 
 
