@@ -77,10 +77,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
-Route::prefix('dashboard/posts')->middleware('auth')->group(function () {
-    Route::get('checkSlug/{slug}', [DashboardPostController::class, 'checkSlug'])->name('dashboard.posts.checkSlug');
-    Route::resource('/', DashboardPostController::class);
-});
+// Route::prefix('dashboard/posts')->middleware('auth')->group(function () {
+//     Route::get('checkSlug/{slug}', [DashboardPostController::class, 'checkSlug'])->name('dashboard.posts.checkSlug');
+//     Route::resource('/', DashboardPostController::class);
+// });
 
 // Route::resource('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug']);
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

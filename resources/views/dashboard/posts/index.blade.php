@@ -58,16 +58,17 @@
                                             <i class="fa fa-file"> Read</i> 
                                         </a>
                                         
-                                        <a href="/dashboard/posts/{{$post->id}}" class="btn btn-warning">
+                                        <a href="/dashboard/posts/{{$post->slug}}/edit" class="btn btn-warning">
                                             <i class="fa fa-edit"> Edit</i> 
                                         </a>
-                                        
-                                        <a href="/dashboard/posts/{{$post->id}}" class="btn btn-danger">
+                                        <form action="/dashboard/posts/{{$post->slug}}"  method="post" class="d-inline">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger" onclick="return confirm('Are you sure?')" >
                                             <i class="fa fa-trash"> Delete</i> 
-                                        </a>
-                                        
-                                        
-                                                                                
+                                        </button>
+                                        </form>
+                                                                                                                                                                                  
                                     </td>
                                    
                                 </tr>
