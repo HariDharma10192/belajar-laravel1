@@ -16,9 +16,16 @@
                     <i class="fa fa-trash"> Delete</i> 
                 </button>
                 </form>
+            @if ($post->image)
+            <div style="max-height:350px; overflow:hidden;">
+                <img src="{{asset('storage/'.$post->image)}}"  class="mb-4 mt-3 img-fluid" alt="{{ $post->category->name }}">
+            </div>
 
-            {{-- <p>By. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/posts?category=/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p> --}}
+            @else
+            
             <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}"  class="mb-4 mt-3 img-fluid" alt="{{ $post->category->name }}">
+            @endif
+            {{-- <p>By. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/posts?category=/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p> --}}
             <article class="my-3">
                 {!! $post->body !!}  
             </article>                
