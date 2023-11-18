@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h2 class="card-title">Edit  Post</h2>
                 <div class="basic-form">
-                    <form method="post" action="/dashboard/posts/{{$post->slug}}">
+                    <form method="post" action="/dashboard/posts/{{$post->slug}}"  class="mb-5" enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="form-group row">
@@ -50,6 +50,21 @@
                              
                             </select>
                         </div>
+
+                        <div class="form-group row">
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Post Image</label>
+                                <input type="hidden" name="oldImage" value="{{$post->image}}">
+                                @if ($post->image)
+                                <img src="/storage/{{ $post->image }}" alt="" width="50px">
+                                @else
+                                <img src="" alt="" class="mb-3 col-sm-5 img-preview img-fluid">
+
+                                @endif
+                                <input class="form-control"  name="image" type="file" id="image" onchange="previewImage()">
+                            </div>
+                        </div>
+
                         <div class=" form-group row">
                             <label for="body" class="form-label"></label>
                             <input id="body" for="body"  type="hidden" name="body" required value="{{old('body',$post->body)}} ">
@@ -83,6 +98,21 @@
     document.addEventListener('trix-file-accept', function(e){
         e.preventDefault();
     })
+
+    function previewImage(){
+
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    imgPreview.style.display ='block';
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+    oFReader.onload =function (oFREvent){
+        imgPreview.src= oFREvent.target.result;
+        }
+
+
+    }
 </script>
 
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>

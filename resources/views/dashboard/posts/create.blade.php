@@ -62,16 +62,18 @@
                         <div class="form-group row">
                             <div class="mb-3">
                                 <label for="image" class="form-label">Post Image</label>
-                                <input class="form-control"  name="image" type="file" id="image">
+                                <img src="" alt="" class="mb-3 col-sm-5 img-preview img-fluid">
+                                <input class="form-control"  name="image" type="file" id="image" onchange="previewImage()">
                             </div>
-  </div>
-  <div class=" form-group row">
-    <label for="body" class="form-label"></label>
-    <input id="body" for="body"  type="hidden" name="body" required value="{{old('body')}} ">
-    <trix-editor input="body"></trix-editor>
+                        </div>
+                        
+                            <div class=" form-group row">
+                                <label for="body" class="form-label"></label>
+                                <input id="body" for="body"  type="hidden" name="body" required value="{{old('body')}} ">
+                                <trix-editor input="body"></trix-editor>
 
 
-</div>
+                            </div>
 
                         <div class="form-group row">
                             <div class="col-sm-10">
@@ -97,6 +99,24 @@
     document.addEventListener('trix-file-accept', function(e){
         e.preventDefault();
     })
+
+    function previewImage(){
+
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display ='block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+        oFReader.onload =function (oFREvent){
+            imgPreview.src= oFREvent.target.result;
+            }
+
+
+    }
+
+
+
 </script>
 
 <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
