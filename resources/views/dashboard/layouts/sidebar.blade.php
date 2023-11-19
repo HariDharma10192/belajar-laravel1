@@ -11,6 +11,16 @@
                     <li><a class=" {{Request::is('/dashboard/posts*')?'active':''}}" href="/dashboard/posts"> <i class="fa fa-book"></i> My Posts</a></li>
                 </ul>
             </li>
+            @can('admin')
+             <h6 class=" sidebar-heading d-flex justify-content-between align-items-center px-3 pt-4 pb-1 text-muted">
+                <span>Administrator</span>
+            </h6>
+            <ul class="nav flex-colum">
+                <li class="nav-item">
+                    <a class=" {{Request::is('/dashboard/categories*')?'active':''}}" href="/dashboard/categories"><i class="fa fa-plus-square-o"></i> Post Categories</a>
+                </li>
+            </ul>
+            @endcan
             {{-- <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
